@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/mwang/visual-Studio-Code/AbuTech-ai-security-platform/mlruns/1/models/m-d859ffe299a3431c830df0f8b45922b0/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.5
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.11.1
+model_id: m-d859ffe299a3431c830df0f8b45922b0
+model_size_bytes: 312629
+model_uuid: m-d859ffe299a3431c830df0f8b45922b0
+prompts: null
+run_id: 256887bab67c45bd82929f00c77bdd7f
+utc_time_created: '2026-04-27 19:26:41.124346'

@@ -1,0 +1,34 @@
+
+=====================================
+AbuTech AI Security Platform
+Network Intrusion Detection Report
+=====================================
+Model: XGBoost
+
+DETECTION PERFORMANCE
+---------------------
+Detection Rate:     99.9%
+  Attacks Detected: 5,018
+  Attacks Missed:   6
+  Total Attacks:    5,024
+
+FALSE ALARM RATE
+----------------
+False Positive Rate: 0.04%
+False Alarms:        2
+
+OVERALL SCORES
+--------------
+F1 Score:    0.9992
+Precision:   0.9996
+ROC-AUC:     0.9999
+
+DEPLOYMENT ASSESSMENT
+---------------------
+✅ Detection rate meets threshold (>95%)
+✅ False alarm rate meets threshold (<1%)
+
+🚀 RECOMMENDATION: Model meets production deployment criteria
+
+Reports saved to: reports\intrusion_detection
+=====================================

@@ -676,7 +676,7 @@ Reports saved to: {self.output_dir}
             self.output_dir /
             f"{model_name.lower().replace(' ', '_')}_report.txt"
         )
-        with open(report_path, "w") as f:
+        with open(report_path, "w", encoding="utf-8") as f:
             f.write(report)
 
         logger.info(report)
