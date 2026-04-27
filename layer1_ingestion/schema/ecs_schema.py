@@ -173,12 +173,46 @@ class ECSNetwork:
     Network communication details.
     Used for network flow events and
     process network connections.
+
+    Basic fields populated by all network normalizers.
+    Flow statistics fields populated by network flow
+    normalizers like Zeek and NetFlow.
+    These statistics are what feed the Layer 2
+    network intrusion detection model.
     """
+    # Basic connection fields
     protocol: Optional[str] = None
     transport: Optional[str] = None
     direction: Optional[str] = None
     bytes: Optional[int] = None
     packets: Optional[int] = None
+
+    # Flow statistics - populated by network flow normalizer
+    # These map directly to CICIDS2017 features
+    duration_ms: Optional[float] = None
+    fwd_packets: Optional[int] = None
+    bwd_packets: Optional[int] = None
+    fwd_bytes: Optional[int] = None
+    bwd_bytes: Optional[int] = None
+    fwd_packet_len_max: Optional[float] = None
+    fwd_packet_len_mean: Optional[float] = None
+    bwd_packet_len_max: Optional[float] = None
+    bwd_packet_len_mean: Optional[float] = None
+    flow_bytes_per_sec: Optional[float] = None
+    flow_packets_per_sec: Optional[float] = None
+    iat_mean: Optional[float] = None
+    iat_std: Optional[float] = None
+    fwd_iat_mean: Optional[float] = None
+    bwd_iat_mean: Optional[float] = None
+
+    # TCP flag counts
+    syn_flags: Optional[int] = None
+    rst_flags: Optional[int] = None
+    psh_flags: Optional[int] = None
+    ack_flags: Optional[int] = None
+
+    # Window size
+    init_win_bytes_fwd: Optional[int] = None
 
 
 @dataclass
