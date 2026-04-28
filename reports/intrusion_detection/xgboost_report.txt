@@ -8,19 +8,19 @@ Model: XGBoost
 DETECTION PERFORMANCE
 ---------------------
 Detection Rate:     99.9%
-  Attacks Detected: 5,018
-  Attacks Missed:   6
+  Attacks Detected: 5,019
+  Attacks Missed:   5
   Total Attacks:    5,024
 
 FALSE ALARM RATE
 ----------------
-False Positive Rate: 0.04%
-False Alarms:        2
+False Positive Rate: 0.02%
+False Alarms:        1
 
 OVERALL SCORES
 --------------
-F1 Score:    0.9992
-Precision:   0.9996
+F1 Score:    0.9994
+Precision:   0.9998
 ROC-AUC:     0.9999
 
 DEPLOYMENT ASSESSMENT

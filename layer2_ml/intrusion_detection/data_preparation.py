@@ -54,42 +54,41 @@ logger = logging.getLogger(__name__)
 # - Fewer features = faster training and inference
 # ============================================================
 
-SELECTED_FEATURES = [
-    # Flow duration - attacks often have unusual durations
+SELECTED_FEATURES = [ # Flow duration
     " Flow Duration",
 
-    # Packet counts - attacks generate distinctive patterns
+    # Packet counts
     " Total Fwd Packets",
     " Total Backward Packets",
 
-    # Byte counts - exfiltration has high byte counts
-    " Total Length of Fwd Packets",
+    # Byte counts
+    "Total Length of Fwd Packets",
     " Total Length of Bwd Packets",
 
-    # Packet size statistics - attacks have distinctive sizes
+    # Packet size statistics
     " Fwd Packet Length Max",
     " Fwd Packet Length Mean",
-    " Bwd Packet Length Max",
+    "Bwd Packet Length Max",
     " Bwd Packet Length Mean",
 
-    # Flow rates - DoS attacks have very high rates
-    " Flow Bytes/s",
+    # Flow rates
+    "Flow Bytes/s",
     " Flow Packets/s",
 
-    # Inter-arrival times - beaconing has regular intervals
+    # Inter-arrival times
     " Flow IAT Mean",
     " Flow IAT Std",
     " Fwd IAT Mean",
     " Bwd IAT Mean",
 
-    # TCP flags - scanning uses distinctive flag patterns
+    # TCP flags
     " SYN Flag Count",
     " RST Flag Count",
     " PSH Flag Count",
     " ACK Flag Count",
 
-    # Window size - OS fingerprinting signal
-    " Init_Win_bytes_forward",
+    # Window size
+    "Init_Win_bytes_forward",
 ]
 
 # Label column name in CICIDS2017

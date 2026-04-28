@@ -7,9 +7,9 @@ Model: Random Forest
 
 DETECTION PERFORMANCE
 ---------------------
-Detection Rate:     99.8%
-  Attacks Detected: 5,016
-  Attacks Missed:   8
+Detection Rate:     99.9%
+  Attacks Detected: 5,018
+  Attacks Missed:   6
   Total Attacks:    5,024
 
 FALSE ALARM RATE
@@ -19,9 +19,9 @@ False Alarms:        0
 
 OVERALL SCORES
 --------------
-F1 Score:    0.9992
+F1 Score:    0.9994
 Precision:   1.0000
-ROC-AUC:     0.9998
+ROC-AUC:     0.9997
 
 DEPLOYMENT ASSESSMENT
 ---------------------
