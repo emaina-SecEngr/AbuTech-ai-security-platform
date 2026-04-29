@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/mwang/visual-Studio-Code/AbuTech-ai-security-platform/mlruns/3/models/m-284eb2a1e35c452aae0e82aa53376ad8/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.11.1
+model_id: m-284eb2a1e35c452aae0e82aa53376ad8
+model_size_bytes: 86605
+model_uuid: m-284eb2a1e35c452aae0e82aa53376ad8
+prompts: null
+run_id: d0fa5297dd674614a60918b7219da8a0
+utc_time_created: '2026-04-29 23:14:12.640620'
