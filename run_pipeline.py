@@ -1,20 +1,17 @@
 """
 AbuTech AI Security Platform
-End-to-End Pipeline Demonstration — With Router
+End-to-End Pipeline — Layer 1 + Layer 2 + Layer 3
 
-This script demonstrates the complete automated flow:
+Complete flow:
     Raw CrowdStrike EDR event
         ↓
-    Layer 1: CrowdStrike Normalization
+    Layer 1: Normalization
         ↓
-    Layer 2: Automated Routing + ML Scoring
-        NetworkIntrusionDetector  ← network, dns
-        MalwareClassifier         ← process
+    Layer 2: ML Scoring + Routing
         ↓
-    RoutingResult with all model scores
-
-Run with:
-    python run_pipeline.py
+    Layer 3: Knowledge Graph Building + Enrichment
+        ↓
+    Graph Summary with threat intelligence context
 """
 
 import logging
@@ -32,6 +29,15 @@ from layer1_ingestion.normalizers.crowdstrike_normalizer import (
     CrowdStrikeNormalizer
 )
 from layer2_ml.router import Layer2Router
+from layer3_knowledge.graph.security_graph import (
+    SecurityKnowledgeGraph
+)
+from layer3_knowledge.graph.graph_builder import (
+    GraphBuilder
+)
+from layer3_knowledge.enrichment.threat_enricher import (
+    ThreatEnricher
+)
 
 
 # ============================================================
@@ -139,7 +145,7 @@ def main():
 
     print("\n" + "=" * 65)
     print("ABUTECH AI SECURITY PLATFORM")
-    print("End-to-End Pipeline — Layer 1 + Layer 2 Router")
+    print("End-to-End Pipeline — Layers 1 + 2 + 3")
     print("=" * 65)
 
     # ---- INITIALIZE LAYER 1 ----
@@ -149,8 +155,6 @@ def main():
 
     # ---- INITIALIZE LAYER 2 ROUTER ----
     router = Layer2Router()
-
-    # Load models
     loaded = router.load_models(
         intrusion_model_path=(
             "models/intrusion_detection/best_model.pkl"
@@ -166,7 +170,6 @@ def main():
         )
     )
 
-    # Show model status
     status = router.get_model_status()
     for model_name, info in status.items():
         icon = "✅" if info["loaded"] else "⚠️ "
@@ -175,6 +178,12 @@ def main():
             f"  {icon} Layer 2: {model_name} "
             f"[{categories}]"
         )
+
+    # ---- INITIALIZE LAYER 3 ----
+    graph = SecurityKnowledgeGraph()
+    builder = GraphBuilder(graph)
+    enricher = ThreatEnricher(graph)
+    print("  ✅ Layer 3: Knowledge Graph ready")
 
     # ---- DEFINE TEST EVENTS ----
     events = [
@@ -208,12 +217,10 @@ def main():
 
         # Layer 1: Normalize
         normalized = normalizer.normalize(raw_event)
-
         if normalized is None:
             print("❌ Layer 1: Normalization failed")
             continue
 
-        # Layer 1 output
         severity = normalized.event.severity or 0
         severity_label = (
             "🔴 CRITICAL" if severity >= 75
@@ -225,11 +232,6 @@ def main():
         print(f"\n📥 LAYER 1 — NORMALIZATION")
         print(f"   Status:   ✅ Success")
         print(f"   Host:     {normalized.host.hostname}")
-        print(
-            f"   User:     "
-            f"{normalized.user.domain}\\"
-            f"{normalized.user.name}"
-        )
         print(
             f"   Category: {normalized.event.category}"
         )
@@ -271,26 +273,12 @@ def main():
         # Layer 2: Route and score
         routing_result = router.route(normalized)
 
-        print(f"\n🤖 LAYER 2 — AUTOMATED ROUTING")
+        print(f"\n🤖 LAYER 2 — ML SCORING")
         print(
             f"   Routed to: "
             f"{', '.join(routing_result.routed_to)}"
         )
 
-        # Show intrusion detection result
-        if routing_result.intrusion_result:
-            det = routing_result.intrusion_result
-            verdict = (
-                "🚨 ATTACK" if det.is_attack
-                else "✅ BENIGN"
-            )
-            print(f"\n   NetworkIntrusionDetector:")
-            print(f"   Verdict:    {verdict}")
-            print(f"   Risk Score: {det.risk_score}")
-            print(f"   Confidence: {det.confidence}")
-            print(f"   Latency:    {det.inference_time_ms}ms")
-
-        # Show malware detection result
         if routing_result.malware_result:
             mal = routing_result.malware_result
             verdict = (
@@ -301,19 +289,26 @@ def main():
             print(f"   Verdict:    {verdict}")
             print(f"   Risk Score: {mal.risk_score}")
             print(f"   Confidence: {mal.confidence}")
-            print(f"   Latency:    {mal.inference_time_ms}ms")
-
             if mal.malware_indicators:
                 print(f"   Indicators:")
-                for indicator in mal.malware_indicators[:3]:
-                    print(f"     → {indicator}")
-
+                for ind in mal.malware_indicators[:2]:
+                    print(f"     → {ind}")
             if mal.attack_techniques:
                 print(
                     f"   ATT&CK: "
                     f"{', '.join(mal.attack_techniques[:2])}"
                 )
-        # Show DNS detection result
+
+        if routing_result.intrusion_result:
+            intr = routing_result.intrusion_result
+            verdict = (
+                "🚨 ATTACK" if intr.is_attack
+                else "✅ BENIGN"
+            )
+            print(f"\n   NetworkIntrusionDetector:")
+            print(f"   Verdict:    {verdict}")
+            print(f"   Risk Score: {intr.risk_score}")
+
         if routing_result.dns_result:
             dns = routing_result.dns_result
             verdict = (
@@ -323,65 +318,93 @@ def main():
             print(f"\n   DNSClassifier:")
             print(f"   Verdict:    {verdict}")
             print(f"   Risk Score: {dns.risk_score}")
-            print(f"   Confidence: {dns.confidence}")
             print(f"   DGA Family: {dns.dga_family}")
-            print(f"   Latency:    {dns.inference_time_ms}ms")
             if dns.dga_indicators:
-                print(f"   Indicators:")
-                for indicator in dns.dga_indicators[:3]:
-                    print(f"     → {indicator}")
-        # Overall verdict
+                for ind in dns.dga_indicators[:2]:
+                    print(f"     → {ind}")
+
         verdict_icon = (
             "🚨" if routing_result.is_threat()
             else "✅"
         )
-        print(f"\n   {'─' * 40}")
         print(
-            f"   {verdict_icon} OVERALL: "
+            f"\n   {verdict_icon} OVERALL: "
             f"{routing_result.overall_verdict} "
             f"(risk={routing_result.overall_risk_score})"
         )
-        print(
-            f"   Primary model: "
-            f"{routing_result.primary_model}"
-        )
-        print(
-            f"   Routing time: "
-            f"{routing_result.routing_time_ms}ms"
-        )
 
-    # ---- FINAL STATISTICS ----
+        # Layer 3: Build knowledge graph
+        builder.process_routing_result(
+            normalized, routing_result
+        )
+        print(f"\n🕸️  LAYER 3 — KNOWLEDGE GRAPH")
+        stats = graph.get_statistics()
+        print(
+            f"   Nodes: {stats['total_nodes']}  "
+            f"Edges: {stats['total_edges']}"
+        )
+        print(f"   Node types: {stats['node_types']}")
+
+    # ---- LAYER 3 ENRICHMENT ----
     print(f"\n{'=' * 65}")
-    print("PLATFORM STATISTICS")
+    print("LAYER 3 — THREAT INTELLIGENCE ENRICHMENT")
     print(f"{'=' * 65}")
 
-    stats = router.get_statistics()
-    norm_stats = normalizer.get_statistics()
+    enrichment_results = enricher.enrich_all()
+    print(f"\n  IPs enriched:      "
+          f"{enrichment_results['ips_enriched']}")
+    print(f"  Domains enriched:  "
+          f"{enrichment_results['domains_enriched']}")
+    print(f"  Campaigns found:   "
+          f"{enrichment_results['campaigns_identified']}")
 
-    print(f"\nLayer 1 — Normalizer:")
-    print(
-        f"   Events processed: "
-        f"{norm_stats['events_processed']}"
-    )
-    print(
-        f"   Success rate:     "
-        f"{norm_stats['success_rate_pct']}%"
+    # ---- HOST ENRICHMENT ----
+    host_enrichment = enricher.enrich_host_from_graph(
+        "WKSTN-JSMITH-01"
     )
 
-    print(f"\nLayer 2 — Router:")
-    print(
-        f"   Total routed:   {stats['total_routed']}"
-    )
-    print(
-        f"   Threats found:  {stats['threat_count']}"
-    )
-    print(
-        f"   Threat rate:    "
-        f"{stats['threat_rate']:.1%}"
-    )
-    print(f"   By category:")
-    for cat, count in stats["routing_counts"].items():
-        print(f"     {cat}: {count}")
+    if host_enrichment:
+        print(f"\n  Host: WKSTN-JSMITH-01")
+        print(
+            f"  Graph-enriched risk: "
+            f"{host_enrichment['host_risk_score']:.2f} "
+            f"{host_enrichment['host_risk_label']}"
+        )
+        print(
+            f"  Threat connections: "
+            f"{host_enrichment['threat_connections']}"
+        )
+        if host_enrichment["malicious_connections"]:
+            print(f"  Connected threats:")
+            for conn in (
+                host_enrichment["malicious_connections"]
+            ):
+                print(
+                    f"    → {conn['entity']} "
+                    f"({conn['type']}) "
+                    f"risk={conn['risk']:.2f}"
+                )
+
+    # ---- GRAPH SUMMARY ----
+    print(f"\n{'=' * 65}")
+    print("KNOWLEDGE GRAPH SUMMARY")
+    print(f"{'=' * 65}")
+    print(graph.get_summary())
+
+    # ---- THREAT SUMMARY ----
+    threat_summary = enricher.get_threat_summary()
+    print(f"Active Alerts:    "
+          f"{threat_summary['active_alerts']}")
+    print(f"High Risk Entities: "
+          f"{threat_summary['high_risk_entities']}")
+
+    if threat_summary["alert_details"]:
+        print(f"\nAlert Details:")
+        for alert in threat_summary["alert_details"]:
+            print(
+                f"  🚨 {alert['type']} "
+                f"(risk={alert['risk']:.2f})"
+            )
 
     print(f"\n{'=' * 65}\n")
 
