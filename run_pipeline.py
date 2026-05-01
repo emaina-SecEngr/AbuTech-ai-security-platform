@@ -313,7 +313,23 @@ def main():
                     f"   ATT&CK: "
                     f"{', '.join(mal.attack_techniques[:2])}"
                 )
-
+        # Show DNS detection result
+        if routing_result.dns_result:
+            dns = routing_result.dns_result
+            verdict = (
+                "🚨 DGA DETECTED" if dns.is_dga
+                else "✅ LEGITIMATE"
+            )
+            print(f"\n   DNSClassifier:")
+            print(f"   Verdict:    {verdict}")
+            print(f"   Risk Score: {dns.risk_score}")
+            print(f"   Confidence: {dns.confidence}")
+            print(f"   DGA Family: {dns.dga_family}")
+            print(f"   Latency:    {dns.inference_time_ms}ms")
+            if dns.dga_indicators:
+                print(f"   Indicators:")
+                for indicator in dns.dga_indicators[:3]:
+                    print(f"     → {indicator}")
         # Overall verdict
         verdict_icon = (
             "🚨" if routing_result.is_threat()
