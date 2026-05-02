@@ -708,7 +708,7 @@ class InvestigationAgent(BaseSecurityAgent):
                 "significance": "Execution phase"
             })
 
-        if state.get("dga_risk", 0) > 0.5:
+        if (state.get("dga_risk") or 0) > 0.5:
             timeline.append({
                 "timestamp": timestamp,
                 "event": "DGA beaconing observed",

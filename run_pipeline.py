@@ -38,6 +38,9 @@ from layer3_knowledge.graph.graph_builder import (
 from layer3_knowledge.enrichment.threat_enricher import (
     ThreatEnricher
 )
+from layer4_reasoning.agents.investigation_graph import (
+    InvestigationGraph
+)
 
 
 # ============================================================
@@ -185,6 +188,8 @@ def main():
     enricher = ThreatEnricher(graph)
     print("  ✅ Layer 3: Knowledge Graph ready")
 
+    investigation_graph = InvestigationGraph()
+    print("  ✅ Layer 4: Investigation Graph ready")
     # ---- DEFINE TEST EVENTS ----
     events = [
         (
@@ -344,7 +349,48 @@ def main():
             f"Edges: {stats['total_edges']}"
         )
         print(f"   Node types: {stats['node_types']}")
-
+        # Layer 4: Investigate high risk events
+        if routing_result.is_threat():
+            print(f"\n🔍 LAYER 4 — AI INVESTIGATION")
+            result = investigation_graph.investigate(
+                routing_result=routing_result,
+                ecs_event=normalized,
+                graph_summary=graph.get_statistics(),
+                threat_summary=(
+                    enricher.get_threat_summary()
+                )
+            )
+            print(
+                f"   Severity:  "
+                f"{result.get('severity_rating')}"
+            )
+            print(
+                f"   Verdict:   "
+                f"{result.get('triage_verdict')}"
+            )
+            print(
+                f"   Actor:     "
+                f"{result.get('threat_actor_identified', 'Unknown')}"
+            )
+            print(
+                f"   C2 Active: "
+                f"{result.get('c2_confirmed', False)}"
+            )
+            print(
+                f"   Compromise:"
+                f" {result.get('compromise_confirmed', False)}"
+            )
+            if result.get("response_actions"):
+                print(f"   Top Actions:")
+                for action in sorted(
+                    result["response_actions"],
+                    key=lambda x: x["priority"]
+                )[:3]:
+                    print(
+                        f"     [{action['priority']}] "
+                        f"{action['action']} — "
+                        f"{action['target']}"
+                    )
     # ---- LAYER 3 ENRICHMENT ----
     print(f"\n{'=' * 65}")
     print("LAYER 3 — THREAT INTELLIGENCE ENRICHMENT")
@@ -405,7 +451,94 @@ def main():
                 f"  🚨 {alert['type']} "
                 f"(risk={alert['risk']:.2f})"
             )
+    # ---- FINAL COMBINED INVESTIGATION ----
+    print(f"\n{'=' * 65}")
+    print("LAYER 4 — COMBINED THREAT INVESTIGATION")
+    print(f"{'=' * 65}")
 
+    # Use the highest risk event as the trigger
+    # but pass full graph context from all events
+    from layer4_reasoning.agents.agent_state import (
+        InvestigationState
+    )
+
+    combined_state = InvestigationState(
+        event_id="combined-investigation",
+        event_category="multi-event",
+        event_host="WKSTN-JSMITH-01",
+        event_user="CORP\\jsmith",
+        event_timestamp="2024-03-29T02:17:43Z",
+        overall_risk_score=0.97,
+        overall_verdict="MALWARE",
+        malware_risk=0.97,
+        intrusion_risk=0.077,
+        dga_risk=0.90,
+        malware_indicators=[
+            "Scripting engine execution: powershell.exe",
+            "Suspicious parent: MSBuild.exe",
+            "Encoded PowerShell detected"
+        ],
+        attack_techniques=[
+            "T1566.001", "T1059.001", "T1127"
+        ],
+        dga_indicators=[
+            "Dynamic DNS provider detected",
+            "duckdns domains",
+            "System process DNS request"
+        ],
+        graph_node_count=graph.get_statistics()["total_nodes"],
+        graph_edge_count=graph.get_statistics()["total_edges"],
+        high_risk_entities=[
+            {"type": "process", "entity": "powershell.exe", "risk": 0.97},
+            {"type": "ip_address", "entity": "185.220.101.45", "risk": 0.85},
+            {"type": "domain", "entity": "xjf8k2mp.duckdns.org", "risk": 0.90}
+        ],
+        threat_connections=[
+            {"type": "ip_address", "entity": "185.220.101.45", "risk": 0.85}
+        ],
+        host_risk_score=0.78,
+        known_threat_actor=None,
+        known_malware_family=None,
+        ti_enrichments=[],
+        triage_verdict=None,
+        triage_confidence=None,
+        triage_reasoning=None,
+        triage_priority=None,
+        threat_actor_identified=None,
+        threat_actor_confidence=None,
+        campaign_identified=None,
+        c2_confirmed=None,
+        malware_family_confirmed=None,
+        intel_summary=None,
+        confirmed_techniques=[],
+        attack_timeline=[],
+        compromise_confirmed=None,
+        initial_access_vector=None,
+        lateral_movement_detected=None,
+        data_exfiltration_suspected=None,
+        blast_radius=[],
+        investigation_summary=None,
+        response_actions=[],
+        containment_priority=None,
+        isolation_recommended=None,
+        credential_reset_recommended=None,
+        response_summary=None,
+        final_report=None,
+        executive_summary=None,
+        severity_rating=None,
+        agent_log=[]
+    )
+
+    final_result = investigation_graph.investigate_from_state(
+        combined_state
+    )
+
+    investigation_graph.print_investigation_summary(
+        final_result
+    )
+
+    print("\nFINAL REPORT:")
+    print(final_result.get("final_report", ""))
     print(f"\n{'=' * 65}\n")
 
 
