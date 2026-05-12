@@ -169,7 +169,7 @@ class BaseSecurityAgent:
                 api_key=self.api_key
             )
             message = client.messages.create(
-                model="claude-sonnet-4-6",
+                model="claude-sonnet-4-20250514",
                 max_tokens=max_tokens,
                 messages=[{
                     "role": "user",
