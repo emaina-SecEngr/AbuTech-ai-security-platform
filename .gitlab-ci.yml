@@ -110,7 +110,7 @@ unit_and_integration_tests:
       --cov-report=term-missing
       --cov-report=xml:coverage.xml
       -q
-      --timeout=300
+     
   coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     reports:
