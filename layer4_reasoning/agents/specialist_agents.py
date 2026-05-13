@@ -312,18 +312,14 @@ class TriageAgent(BaseSecurityAgent):
             f"ML verdict: {ml_verdict}. "
         )
 
-        if state.get("malware_risk"):
-            reasoning += (
-                f"Malware score: "
-                f"{state['malware_risk']:.2f}. "
-            )
+        dga_risk = state.get("dga_risk")
+        if dga_risk and isinstance(dga_risk, (int, float)):
+         reasoning += (
+        f"DGA score: "
+        f"{dga_risk:.2f}. "
+    )
 
-        if state.get("dga_risk"):
-            reasoning += (
-                f"DGA score: "
-                f"{state['dga_risk']:.2f}. "
-            )
-
+       
         reasoning += (
             f"Graph shows {state['graph_node_count']} "
             f"connected entities. "
