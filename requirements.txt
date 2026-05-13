@@ -8,7 +8,7 @@ torch==2.11.0
 numpy==2.4.4
 
 # ML
-scikit-learn==1.8.0
+scikit-learn==1.5.2
 pandas==2.2.3
 scipy==1.15.3
 
@@ -32,8 +32,7 @@ python-dateutil==2.9.0
 
 # ML Tracking
 mlflow==3.11.1
-xgboost==2.1.4
-imbalanced-learn==0.13.0
+imbalanced-learn==0.12.4
 
 # PDF Processing
 pymupdf==1.25.5
@@ -45,7 +44,7 @@ streamlit==1.45.1
 pytest==9.0.3
 pytest-cov==6.1.0
 anyio==4.13.0
-pytest-timeout==2.3.1
+
 
 # Security Scanning
 bandit==1.8.3
