@@ -36,6 +36,17 @@ try:
     TOOLS_AVAILABLE = True
 except ImportError:
     TOOLS_AVAILABLE = False
+    
+    # Agent memory for persistent storage
+try:
+    from layer4_reasoning.memory.memory_store import (
+        AgentMemoryStore
+    )
+    MEMORY_AVAILABLE = True
+    _memory_store = AgentMemoryStore()
+except Exception:
+    MEMORY_AVAILABLE = False
+    _memory_store = None
 
 logger = logging.getLogger(__name__)
 
@@ -315,8 +326,21 @@ class IntelAgent(BaseSecurityAgent):
                 pass
 
         # Search past incidents
+        # Search past incidents using vector memory
         past_incidents = []
-        if TOOLS_AVAILABLE:
+        if MEMORY_AVAILABLE and _memory_store:
+            try:
+                query = (
+                    f"{state.get('event_user', '')} "
+                    f"{state.get('overall_verdict', '')} "
+                    f"{state.get('event_host', '')}"
+                )
+                past_incidents = _memory_store.search_similar(
+                    query, n_results=3
+                )
+            except Exception:
+                pass
+        elif TOOLS_AVAILABLE:
             try:
                 past_incidents = search_past_incidents(
                     accessor=state.get("event_user", ""),
@@ -648,6 +672,12 @@ class ReportAgent(BaseSecurityAgent):
                 store_incident(state)
             except Exception as e:
                 logger.debug(f"Could not store incident: {e}")
+        # Store in vector memory for semantic search
+        if MEMORY_AVAILABLE and _memory_store:
+            try:
+                _memory_store.store_investigation(state)
+            except Exception as e:
+                logger.debug(f"Memory store failed: {e}")        
 
         return {
             **state,
