@@ -48,6 +48,17 @@ except Exception:
     MEMORY_AVAILABLE = False
     _memory_store = None
 
+    # Human in the loop
+try:
+    from layer4_reasoning.hitl.hitl_manager import (
+        HITLManager
+    )
+    _hitl_manager = HITLManager()
+    HITL_AVAILABLE = True
+except Exception:
+    HITL_AVAILABLE = False
+    _hitl_manager = None
+
 logger = logging.getLogger(__name__)
 
 
@@ -642,9 +653,117 @@ Provide a 4-5 sentence response plan:
 3. Credential and access remediation
 4. Communication and notification requirements
 5. Recovery timeline estimate"""
+        
         return self._call_claude(prompt, max_tokens=400)
 
+# ============================================================
+# RESPONSE AGENT
+# ============================================================
 
+class ResponseAgent(BaseSecurityAgent):
+
+    def __init__(self, anthropic_api_key: str = None):
+        super().__init__("ResponseAgent", anthropic_api_key)
+
+    def run(self, state: InvestigationState) -> InvestigationState:
+        actions = self._generate_response_actions(state)
+        priority = self._determine_containment_priority(state)
+        isolation = self._recommend_isolation(state)
+        cred_reset = self._recommend_credential_reset(state)
+        summary = self._build_response_summary(state, actions, priority)
+
+        if self.use_llm:
+            llm_summary = self._llm_response_plan(state)
+            if llm_summary:
+                summary = llm_summary
+
+        log_entries = self._log(state, f"Response: {len(actions)} actions priority={priority} isolation={isolation}")
+
+        # Create HITL approval request if needed
+        if HITL_AVAILABLE and _hitl_manager:
+            try:
+                if _hitl_manager.requires_approval(state):
+                    _hitl_manager.create_approval_request(
+                        {
+                            **state,
+                            "response_actions": actions,
+                            "containment_priority": priority
+                        },
+                        investigation_id=state.get(
+                            "event_id", "unknown"
+                        )
+                    )
+                    logger.info(
+                        f"HITL: Approval required "
+                        f"for {state.get('event_id')}"
+                    )
+            except Exception as e:
+                logger.debug(f"HITL failed: {e}")
+
+        return {
+            **state,
+            "response_actions": actions,
+            "containment_priority": priority,
+            "isolation_recommended": isolation,
+            "credential_reset_recommended": cred_reset,
+            "response_summary": summary,
+            "agent_log": log_entries
+        }
+
+    def _generate_response_actions(self, state: InvestigationState) -> list:
+        actions = []
+        if state.get("compromise_confirmed"):
+            actions.append({"priority": 1, "action": "ISOLATE_HOST", "target": state["event_host"], "reason": "Active compromise confirmed", "automated": False})
+        if state.get("c2_confirmed"):
+            actions.append({"priority": 2, "action": "BLOCK_C2_INFRASTRUCTURE", "target": "Network firewall", "reason": "Block C2 IPs and domains", "automated": True})
+        if state.get("credential_reset_recommended"):
+            actions.append({"priority": 3, "action": "RESET_CREDENTIALS", "target": state["event_user"], "reason": "Credentials may be compromised", "automated": False})
+        actions.append({"priority": 4, "action": "PRESERVE_FORENSIC_EVIDENCE", "target": state["event_host"], "reason": "Capture memory and disk image", "automated": False})
+        actions.append({"priority": 5, "action": "NOTIFY_SECURITY_TEAM", "target": "SOC Manager", "reason": f"Priority: {state.get('triage_priority', 'HIGH')}", "automated": True})
+        return actions
+
+    def _determine_containment_priority(self, state: InvestigationState) -> str:
+        if state.get("compromise_confirmed"):
+            return "IMMEDIATE"
+        elif state.get("c2_confirmed"):
+            return "URGENT"
+        elif state.get("overall_risk_score", 0) >= 0.7:
+            return "HIGH"
+        return "NORMAL"
+
+    def _recommend_isolation(self, state: InvestigationState) -> bool:
+        return bool(state.get("compromise_confirmed") or (state.get("c2_confirmed") and state.get("overall_risk_score", 0) >= 0.8))
+
+    def _recommend_credential_reset(self, state: InvestigationState) -> bool:
+        return bool(state.get("compromise_confirmed") or state.get("lateral_movement_detected"))
+
+    def _build_response_summary(self, state, actions, priority) -> str:
+        host = state["event_host"]
+        user = state["event_user"]
+        summary = f"Response plan for {host} ({user}): Containment priority: {priority}. {len(actions)} actions required. "
+        top_actions = [a["action"] for a in sorted(actions, key=lambda x: x["priority"])[:3]]
+        summary += f"Top actions: {', '.join(top_actions)}."
+        return summary
+
+    def _llm_response_plan(self, state: InvestigationState) -> Optional[str]:
+        prompt = f"""You are an incident response expert.
+Create a prioritized response plan for this incident.
+
+Incident Summary:
+- Host: {state['event_host']}
+- User: {state['event_user']}
+- Compromise Confirmed: {state.get('compromise_confirmed')}
+- C2 Active: {state.get('c2_confirmed')}
+- Threat Actor: {state.get('threat_actor_identified')}
+- Blast Radius: {state.get('blast_radius', [])}
+
+Provide a 4-5 sentence response plan:
+1. Immediate containment actions
+2. Evidence preservation steps
+3. Credential and access remediation
+4. Communication and notification requirements
+5. Recovery timeline estimate"""
+        return self._call_claude(prompt, max_tokens=400)
 # ============================================================
 # REPORT AGENT
 # ============================================================
