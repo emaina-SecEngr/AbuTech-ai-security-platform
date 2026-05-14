@@ -36,9 +36,11 @@ variables:
   LSTM_DETECTION_THRESHOLD: "0.70"
 
 cache:
+  key: default-protected
   paths:
     - .cache/pip
     - .venv/
+  policy: pull
 
 # ============================================================
 # STAGE 1 - SECURITY SCAN

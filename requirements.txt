@@ -2,52 +2,41 @@
 # Core dependencies only
 # pip resolves sub-dependencies automatically
 # No Windows-specific packages
-
 # Deep Learning
 torch==2.11.0
-numpy==2.4.4
-
 # ML
 scikit-learn==1.5.2
+numpy==2.4.4
 pandas==2.2.3
 scipy==1.15.3
-
+imbalanced-learn==0.12.4
+xgboost==2.1.2
 # API Framework
 fastapi==0.136.1
 uvicorn==0.46.0
 httpx==0.28.1
 python-multipart==0.0.20
-
 # LLM and Agents
 anthropic==0.52.0
 langchain==0.3.25
-langchain-community==0.3.25     
-langchain-anthropic==0.3.11     
+langchain-community==0.3.25
+langchain-anthropic==0.3.11
 langgraph==0.4.5
-
 # Knowledge Graph
 networkx==3.6.1
-
 # Data and Requests
 requests==2.32.3
 python-dateutil==2.9.0
-
 # ML Tracking
 mlflow==3.11.1
-imbalanced-learn==0.12.4
-xgboost==2.1.2                  
-
 # PDF Processing
 pymupdf==1.25.5
-
 # Dashboard
 streamlit==1.45.1
-
 # Testing
 pytest==9.0.3
 pytest-cov==6.1.0
 anyio==4.13.0
-
 # Security Scanning
 bandit==1.8.3
 safety==3.5.1
