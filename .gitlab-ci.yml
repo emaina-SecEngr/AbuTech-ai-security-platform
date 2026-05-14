@@ -97,12 +97,12 @@ code_security_scan:
 
 unit_and_integration_tests:
   stage: test
+  timeout: 30 minutes
   before_script:
     - pip install -r requirements.txt --quiet
     - pip install pytest pytest-cov --quiet
   script:
     - echo "Running full test suite"
-    - echo "Expected 662 tests passing"
     - pytest
       --tb=short
       --cov=layer1_ingestion
@@ -112,7 +112,7 @@ unit_and_integration_tests:
       --cov-report=term-missing
       --cov-report=xml:coverage.xml
       -q
-    - echo "Tests complete"
+     
   coverage: '/TOTAL.*\s+(\d+%)$/'
   artifacts:
     reports:

@@ -210,3 +210,51 @@ __marimo__/
 # Use DVC or download directly from UNB website
 data/cicids2017/
 *.pcap_ISCX
+# Test cache files
+.test_cache/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# ML model files (security risk - use MLflow instead)
+*.pkl
+*.pt
+*.pth
+
+# Environment variables (never commit secrets)
+.env
+.env.*
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+.coverage
+coverage.xml
+coverage_html/
+htmlcov/
+
+# MLflow
+mlruns/
+
+# Pytest
+.pytest_cache/
+
+# Distribution
+dist/
+build/
+*.egg-info/

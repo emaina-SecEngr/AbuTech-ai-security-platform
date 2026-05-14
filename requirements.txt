@@ -93,10 +93,15 @@ starlette==1.0.0
 sympy==1.14.0
 threadpoolctl==3.6.0
 torch==2.11.0
-typing-inspection==0.4.2
-typing_extensions==4.15.0
-tzdata==2026.2
-urllib3==2.6.3
+numpy==2.4.4
+
+# ML
+scikit-learn==1.5.2
+pandas==2.2.3
+scipy==1.15.3
+
+# API Framework
+fastapi==0.136.1
 uvicorn==0.46.0
 waitress==3.0.2
 wcwidth==0.6.0
