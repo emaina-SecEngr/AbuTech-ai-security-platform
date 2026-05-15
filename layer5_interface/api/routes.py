@@ -137,7 +137,25 @@ async def ingest_s3_event(request: S3IngestRequest):
                 sensitivity_label = pii_finding.sensitivity_label.value
                 data_types_found = pii_finding.data_types_found
 
-        combined_risk = max(data_event.risk_score, if_result.anomaly_score)
+        # ---- LSTM SEQUENCE SCORING ----
+        lstm_score = 0.0
+        try:
+            from layer2_ml.sequence.api.sequence_api \
+                import SequenceAPI
+            seq_api = SequenceAPI(persist=False)
+            lstm_result = seq_api.score_event(
+                data_event
+            )
+            lstm_score = lstm_result.anomaly_score
+        except Exception as e:
+            logger.debug(f"LSTM scoring failed: {e}")
+
+        # ---- COMBINE RISK SCORES ----
+        combined_risk = max(
+            data_event.risk_score,
+            if_result.anomaly_score,
+            lstm_score
+        )
         if sensitivity_label in ["PCI", "PHI", "PII"]:
             combined_risk = min(1.0, combined_risk + 0.2)
 
