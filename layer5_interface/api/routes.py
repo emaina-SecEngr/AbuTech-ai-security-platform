@@ -351,7 +351,45 @@ async def get_approval_stats():
     except Exception as e:
         logger.error(f"HITL stats failed: {e}")
         return {}
+    # ============================================================
+# MLFLOW ENDPOINTS
+# ============================================================
 
+@router.get("/mlflow/summary", tags=["MLflow"])
+async def get_mlflow_summary():
+    """
+    Get MLflow experiment summary for dashboard.
+    SR 11-7: Model performance history.
+    """
+    try:
+        from layer2_ml.tracking.mlflow_tracker \
+            import MLflowTracker
+        tracker = MLflowTracker()
+        return tracker.get_experiment_summary()
+    except Exception as e:
+        logger.error(f"MLflow summary failed: {e}")
+        return {"error": str(e), "total_runs": 0}
+
+
+@router.get("/mlflow/health", tags=["MLflow"])
+async def get_mlflow_health():
+    """
+    Get MLflow backend health status.
+    """
+    try:
+        from layer2_ml.tracking.mlflow_tracker \
+            import MLflowTracker
+        tracker = MLflowTracker()
+        return {
+            "backend": (
+                "mlflow" if tracker.use_mlflow
+                else "local_json"
+            ),
+            "tracking_uri": tracker.tracking_uri,
+            "status": "healthy"
+        }
+    except Exception as e:
+        return {"status": "degraded", "error": str(e)}
 
 # ============================================================
 # GRAPH

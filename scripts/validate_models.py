@@ -52,6 +52,15 @@ from datetime import timezone
 
 import numpy as np
 
+# MLflow tracking for SR 11-7
+try:
+    from layer2_ml.tracking.mlflow_tracker import (
+        log_model_performance
+    )
+    MLFLOW_AVAILABLE = True
+except Exception:
+    MLFLOW_AVAILABLE = False
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -283,6 +292,15 @@ def validate_isolation_forest() -> dict:
         }
 
     return results
+    if MLFLOW_AVAILABLE:
+     log_model_performance(
+        model_name="isolation_forest",
+        metrics={
+            "detection_rate": detection_rate,
+            "passed": int(passed)
+        },
+        params={"threshold": IF_AUC_THRESHOLD}
+    )
 
 
 def validate_pii_classifier() -> dict:
@@ -431,7 +449,15 @@ def validate_pii_classifier() -> dict:
         }
 
     return results
-
+    if MLFLOW_AVAILABLE:
+     log_model_performance(
+        model_name="isolation_forest",
+        metrics={
+            "detection_rate": detection_rate,
+            "passed": int(passed)
+        },
+        params={"threshold": IF_AUC_THRESHOLD}
+    )
 
 def validate_lstm_detector() -> dict:
     """
@@ -553,7 +579,15 @@ def validate_lstm_detector() -> dict:
         }
 
     return results
-
+    if MLFLOW_AVAILABLE:
+     log_model_performance(
+        model_name="isolation_forest",
+        metrics={
+            "detection_rate": detection_rate,
+            "passed": int(passed)
+        },
+        params={"threshold": IF_AUC_THRESHOLD}
+    )
 
 # ============================================================
 # MOCK EVENT HELPERS
