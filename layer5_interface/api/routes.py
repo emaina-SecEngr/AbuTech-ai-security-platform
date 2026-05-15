@@ -248,6 +248,109 @@ async def investigate_event(request: InvestigationRequest):
     except Exception as e:
         logger.error(f"Investigation failed: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+    
+    # ============================================================
+# HITL APPROVAL ENDPOINTS
+# ============================================================
+
+@router.get("/approvals/pending", tags=["HITL"])
+async def get_pending_approvals():
+    """Get all pending human approval requests"""
+    try:
+        from layer4_reasoning.hitl.hitl_manager \
+            import HITLManager
+        manager = HITLManager()
+        return manager.get_pending_approvals()
+    except Exception as e:
+        logger.error(f"HITL pending failed: {e}")
+        return []
+
+
+@router.post(
+    "/approvals/{approval_id}/approve",
+    tags=["HITL"]
+)
+async def approve_action(
+    approval_id: str,
+    analyst: str = "soc.analyst@company.com",
+    notes: str = ""
+):
+    """
+    Approve a pending agent action.
+    SR 11-7: Records analyst name and timestamp.
+    """
+    try:
+        from layer4_reasoning.hitl.hitl_manager \
+            import HITLManager
+        manager = HITLManager()
+        return manager.approve(
+            approval_id, analyst, notes
+        )
+    except Exception as e:
+        logger.error(f"Approval failed: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+@router.post(
+    "/approvals/{approval_id}/reject",
+    tags=["HITL"]
+)
+async def reject_action(
+    approval_id: str,
+    analyst: str = "soc.analyst@company.com",
+    notes: str = ""
+):
+    """
+    Reject a pending agent action.
+    SR 11-7: Records analyst name and timestamp.
+    """
+    try:
+        from layer4_reasoning.hitl.hitl_manager \
+            import HITLManager
+        manager = HITLManager()
+        return manager.reject(
+            approval_id, analyst, notes
+        )
+    except Exception as e:
+        logger.error(f"Rejection failed: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+@router.get("/approvals/audit", tags=["HITL"])
+async def get_approval_audit_trail(
+    limit: int = 100
+):
+    """
+    Get SR 11-7 audit trail.
+    Complete history of all human decisions.
+    """
+    try:
+        from layer4_reasoning.hitl.hitl_manager \
+            import HITLManager
+        manager = HITLManager()
+        return manager.get_audit_trail(limit)
+    except Exception as e:
+        logger.error(f"Audit trail failed: {e}")
+        return []
+
+
+@router.get("/approvals/stats", tags=["HITL"])
+async def get_approval_stats():
+    """Get HITL statistics for dashboard"""
+    try:
+        from layer4_reasoning.hitl.hitl_manager \
+            import HITLManager
+        manager = HITLManager()
+        return manager.get_stats()
+    except Exception as e:
+        logger.error(f"HITL stats failed: {e}")
+        return {}
 
 
 # ============================================================

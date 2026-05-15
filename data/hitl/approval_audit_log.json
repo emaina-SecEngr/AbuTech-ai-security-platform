@@ -1,0 +1,65 @@
+[
+  {
+    "timestamp": "2026-05-14T23:28:59.231473Z",
+    "approval_id": "apr_f14a5701",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.279626Z",
+    "approval_id": "apr_dcc2f837",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.317752Z",
+    "approval_id": "apr_cc367018",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.350675Z",
+    "approval_id": "apr_8aa8f476",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.393888Z",
+    "approval_id": "apr_01b43212",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.815917Z",
+    "approval_id": "apr_552dd22c",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.900019Z",
+    "approval_id": "apr_27c71102",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:28:59.965289Z",
+    "approval_id": "apr_0b8e3d9d",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  },
+  {
+    "timestamp": "2026-05-14T23:29:00.058984Z",
+    "approval_id": "apr_6ea34312",
+    "action": "CREATED",
+    "actor": "system",
+    "notes": "Priority: CRITICAL Risk: 0.97"
+  }
+]
