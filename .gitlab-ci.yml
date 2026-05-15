@@ -168,6 +168,7 @@ drift_detection:
 
 build_container:
   stage: build
+  allow_failure: true
   image: docker:24.0.5
   services:
     - docker:24.0.5-dind
@@ -176,24 +177,16 @@ build_container:
     IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
     IMAGE_LATEST: $CI_REGISTRY_IMAGE:latest
   before_script:
-    - docker login
-      -u $CI_REGISTRY_USER
-      -p $CI_REGISTRY_PASSWORD
-      $CI_REGISTRY
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - echo "Building container image"
-    - docker build
-      --tag $IMAGE_TAG
-      --tag $IMAGE_LATEST
-      --label "git.commit=$CI_COMMIT_SHA"
-      --label "git.branch=$CI_COMMIT_REF_NAME"
-      .
+    - docker build --tag $IMAGE_TAG --tag $IMAGE_LATEST .
     - docker push $IMAGE_TAG
     - docker push $IMAGE_LATEST
     - echo "Container built and pushed successfully"
   only:
     - main
-  allow_failure: true
+  
 
 # ============================================================
 # AFTER PIPELINE COMPLETES
