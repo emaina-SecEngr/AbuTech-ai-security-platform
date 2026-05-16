@@ -2434,5 +2434,353 @@
         "automated": true
       }
     ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.882045+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.898310+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.916634+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.933935+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.954472+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:07.970949+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1566.001",
+      "T1059.001"
+    ],
+    "summary": null,
+    "source_ip": "",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise"
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:08.007295+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1059 Command and Scripting",
+      "T1566.001 Spearphishing Attachment",
+      "T1566.001",
+      "T1059.001",
+      "T1127",
+      "T1568.002",
+      "T1071.001"
+    ],
+    "summary": null,
+    "source_ip": "185.220.101.45",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:08.047045+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1059 Command and Scripting",
+      "T1566.001 Spearphishing Attachment",
+      "T1566.001",
+      "T1059.001",
+      "T1127",
+      "T1568.002",
+      "T1071.001"
+    ],
+    "summary": null,
+    "source_ip": "185.220.101.45",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:08.075672+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1059 Command and Scripting",
+      "T1566.001 Spearphishing Attachment",
+      "T1566.001",
+      "T1059.001",
+      "T1127",
+      "T1568.002",
+      "T1071.001"
+    ],
+    "summary": null,
+    "source_ip": "185.220.101.45",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ]
+  },
+  {
+    "id": "test-001",
+    "timestamp": "2026-05-16T00:32:08.106305+00:00",
+    "accessor": "CORP\\jsmith",
+    "host": "WKSTN-JSMITH-01",
+    "verdict": "MALWARE",
+    "severity": null,
+    "risk_score": 0.97,
+    "attack_type": "INVESTIGATE",
+    "techniques": [
+      "T1059 Command and Scripting",
+      "T1566.001 Spearphishing Attachment",
+      "T1566.001",
+      "T1059.001",
+      "T1127",
+      "T1568.002",
+      "T1071.001"
+    ],
+    "summary": null,
+    "source_ip": "185.220.101.45",
+    "response_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ]
   }
 ]
