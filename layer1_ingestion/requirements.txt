@@ -13,7 +13,7 @@ langchain-community>=0.3.0
 # LangGraph - multi-agent workflow orchestration
 # Powers the 5-layer multi-agent SOC architecture
 # Triage, Intel, Investigation, Response agents
-langgraph>=0.2.0
+langgraph>=1.0.10rc1
 
 # LangServe - deploy LangChain agents as REST APIs
 # Connects agent layer to Layer 5 interface
