@@ -1726,5 +1726,869 @@
     "decision_notes": "",
     "auto_approved": false,
     "expires_at": ""
+  },
+  {
+    "approval_id": "apr_d7e7f793",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:31.861260Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_5f1a7519",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:31.887159Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_b637ef20",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:31.910210Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_fdbf3a62",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:31.938078Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_625271e1",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:31.960169Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_ea83cfb9",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:32.143929Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_d545404e",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:32.200243Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_4fadffff",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:32.250551Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_19bc433e",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:03:32.313967Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_42849c85",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:03.629439Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_dd48b434",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:03.663468Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_d44abbc9",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:03.694998Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_0688e404",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:03.723848Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_1d07bcd6",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: None",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:03.754797Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_dd261465",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:04.015724Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_cd9458cc",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:04.075910Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_e63c0bc5",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:04.128158Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
+  },
+  {
+    "approval_id": "apr_861e44b1",
+    "investigation_id": "test-001",
+    "event_id": "test-001",
+    "event_host": "WKSTN-JSMITH-01",
+    "event_user": "CORP\\jsmith",
+    "recommended_actions": [
+      {
+        "priority": 1,
+        "action": "ISOLATE_HOST",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Active compromise confirmed",
+        "automated": false
+      },
+      {
+        "priority": 2,
+        "action": "BLOCK_C2_INFRASTRUCTURE",
+        "target": "Network firewall",
+        "reason": "Block C2 IPs and domains",
+        "automated": true
+      },
+      {
+        "priority": 4,
+        "action": "PRESERVE_FORENSIC_EVIDENCE",
+        "target": "WKSTN-JSMITH-01",
+        "reason": "Capture memory and disk image",
+        "automated": false
+      },
+      {
+        "priority": 5,
+        "action": "NOTIFY_SECURITY_TEAM",
+        "target": "SOC Manager",
+        "reason": "Priority: CRITICAL",
+        "automated": true
+      }
+    ],
+    "risk_score": 0.97,
+    "severity": "HIGH",
+    "priority": "CRITICAL",
+    "agent_reasoning": "Risk score: 0.97 | Triage: Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). | Intel: Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in pr | Investigation: Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. | \u26a0\ufe0f ACTIVE COMPROMISE CONFIRMED | \u26a0\ufe0f C2 COMMUNICATION ACTIVE | ATT&CK: T1059 Command and Scripting, T1566.001 Spearphishing Attachment, T1566.001, T1059.001, T1127, T1568.002, T1071.001",
+    "status": "PENDING",
+    "created_at": "2026-05-23T05:29:04.184082Z",
+    "decided_at": "",
+    "decided_by": "",
+    "decision_notes": "",
+    "auto_approved": false,
+    "expires_at": ""
   }
 ]
