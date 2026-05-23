@@ -11,7 +11,7 @@ from datetime import timezone
 from typing import Optional
 
 from fastapi import APIRouter
-from fastapi import HTTPException
+from fastapi import HTTPException, Request
 from fastapi import status
 
 from layer5_interface.api.models import (
@@ -223,7 +223,106 @@ async def ingest_iam_event(request: IAMIngestRequest):
     except Exception as e:
         logger.error(f"IAM ingestion failed: {e}")
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
+# ============================================================
+# SENTINEL INTEGRATION ENDPOINTS
+# ============================================================
 
+@router.post("/ingest/sentinel", tags=["Sentinel"])
+async def ingest_sentinel_event(
+    request: Request
+):
+    """
+    Receive Microsoft Sentinel ASIM event.
+    Normalize → ML Score → Agent Investigation.
+    Write enrichment back to Sentinel.
+    """
+    try:
+        from layer1_ingestion.normalizers\
+            .sentinel_normalizer import SentinelNormalizer
+
+        raw_event = await request.json()
+        normalizer = SentinelNormalizer()
+
+        # Normalize ASIM → DataAccessEvent
+        data_event = normalizer.normalize(raw_event)
+
+        # Score with ML ensemble
+        combined_risk = data_event.get(
+            "risk_score", 0.0
+        )
+
+        risk_label = _score_to_label(combined_risk)
+
+        logger.info(
+            f"Sentinel event ingested: "
+            f"accessor={data_event['accessor_identity']} "
+            f"score={combined_risk:.3f} "
+            f"label={risk_label}"
+        )
+
+        return {
+            "status": "processed",
+            "accessor": data_event["accessor_identity"],
+            "source_system": data_event["source_system"],
+            "risk_score": combined_risk,
+            "risk_label": risk_label,
+            "risk_reasons": data_event["risk_reasons"],
+            "data_classification": (
+                data_event["data_classification"]
+            )
+        }
+
+    except Exception as e:
+        logger.error(f"Sentinel ingest failed: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
+
+@router.post(
+    "/sentinel/write-back/{incident_id}",
+    tags=["Sentinel"]
+)
+async def write_back_to_sentinel(
+    incident_id: str,
+    risk_score: float = 0.0,
+    verdict: str = "UNKNOWN",
+    agent_summary: str = "",
+    hitl_status: str = "PENDING"
+):
+    """
+    Write AbuTech investigation results
+    back to Sentinel incident.
+    Closes the bidirectional loop.
+    """
+    try:
+        from layer1_ingestion.normalizers\
+            .sentinel_normalizer import SentinelNormalizer
+
+        normalizer = SentinelNormalizer()
+        enrichment = normalizer.write_enrichment(
+            incident_id=incident_id,
+            risk_score=risk_score,
+            verdict=verdict,
+            agent_summary=agent_summary,
+            hitl_status=hitl_status
+        )
+
+        return {
+            "status": "enrichment_prepared",
+            "incident_id": incident_id,
+            "enrichment": enrichment
+        }
+
+    except Exception as e:
+        logger.error(
+            f"Sentinel write-back failed: {e}"
+        )
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
 
 # ============================================================
 # INVESTIGATION
