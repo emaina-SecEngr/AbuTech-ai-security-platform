@@ -6,7 +6,7 @@
 # CORE AGENT FRAMEWORK
 # -----------------------------------------------
 # LangChain - agent skeleton and tool orchestration
-langchain>=0.3.0
+langchain>=0.3.30
 langchain-anthropic>=0.1.0
 langchain-community>=0.3.0
 
