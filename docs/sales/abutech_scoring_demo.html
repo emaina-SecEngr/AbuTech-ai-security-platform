@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AbuTech — Live Threat Scoring Engine</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap');
+
+  :root {
+    --bg: #0a0e14;
+    --panel: #111720;
+    --panel-light: #18202c;
+    --border: #1f2b3a;
+    --text: #e6edf3;
+    --text-dim: #7d8da3;
+    --accent: #00e5a0;
+    --accent-dim: #0a8f66;
+    --critical: #ff3b5c;
+    --high: #ff8a3d;
+    --medium: #ffd23d;
+    --low: #3da5ff;
+    --grid: #131b26;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(0,229,160,0.06), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(255,59,92,0.05), transparent 40%);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    min-height: 100vh;
+    padding: 32px 20px;
+    line-height: 1.5;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .header h1 span { color: var(--accent); }
+  .header p {
+    color: var(--text-dim);
+    margin-top: 10px;
+    font-size: 15px;
+  }
+
+  .scenario-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .scenario-btn {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .scenario-btn:hover { border-color: var(--accent-dim); color: var(--text); }
+  .scenario-btn.active {
+    background: var(--accent);
+    color: #06241a;
+    border-color: var(--accent);
+  }
+
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 820px) { .main-grid { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .panel-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .event-field {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--grid);
+    font-size: 13px;
+  }
+  .event-field:last-child { border-bottom: none; }
+  .event-field .key {
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+  }
+  .event-field .val {
+    color: var(--text);
+    font-weight: 600;
+    text-align: right;
+    max-width: 60%;
+    word-break: break-all;
+  }
+  .val.danger { color: var(--critical); }
+
+  .run-btn {
+    width: 100%;
+    margin-top: 18px;
+    background: var(--accent);
+    color: #06241a;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .run-btn:hover { background: #00ffb3; transform: translateY(-1px); }
+  .run-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .model-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    opacity: 0.3;
+    transition: opacity 0.4s;
+  }
+  .model-row.scored { opacity: 1; }
+  .model-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--panel-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .model-info { flex: 1; min-width: 0; }
+  .model-name {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .model-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .model-bar-wrap {
+    width: 90px;
+    flex-shrink: 0;
+  }
+  .model-bar-track {
+    height: 6px;
+    background: var(--grid);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .model-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  .model-score {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    width: 42px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .verdict {
+    margin-top: 22px;
+    text-align: center;
+    padding: 24px;
+    border-radius: 14px;
+    background: var(--panel-light);
+    border: 1px solid var(--border);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s;
+  }
+  .verdict.show { opacity: 1; transform: translateY(0); }
+  .verdict-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .verdict-score {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    margin: 8px 0;
+    font-family: 'Space Mono', monospace;
+  }
+  .verdict-band {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .verdict-mitre {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .verdict-mitre strong { color: var(--accent); }
+  .verdict-action {
+    margin-top: 14px;
+    font-size: 13px;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    text-align: left;
+  }
+
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .metric {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+  }
+  .metric-old {
+    font-size: 13px;
+    color: var(--critical);
+    text-decoration: line-through;
+    margin-top: 6px;
+  }
+  .metric-new {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .footer-note {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">AbuTech AI Security Platform</div>
+    <h1>Live Threat <span>Scoring Engine</span></h1>
+    <p>Eight ML models. One verdict. Watch behavioral scoring in real time.</p>
+  </div>
+
+  <div class="scenario-bar" id="scenarioBar"></div>
+
+  <div class="main-grid">
+    <div class="panel">
+      <div class="panel-title">Incoming Security Event</div>
+      <div id="eventDisplay"></div>
+      <button class="run-btn" id="runBtn">▶ Run 8-Model Scoring</button>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">ML Model Ensemble</div>
+      <div id="modelList"></div>
+    </div>
+  </div>
+
+  <div class="verdict" id="verdict">
+    <div class="verdict-label">Ensemble Verdict</div>
+    <div class="verdict-score" id="verdictScore">0.00</div>
+    <div class="verdict-band" id="verdictBand">PENDING</div>
+    <div class="verdict-mitre" id="verdictMitre"></div>
+    <div class="verdict-action" id="verdictAction"></div>
+  </div>
+
+  <div class="metrics" id="metrics">
+    <div class="metric">
+      <div class="metric-label">MTTD — DETECT</div>
+      <div class="metric-old">weeks</div>
+      <div class="metric-new">60ms</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">MTTI — INVESTIGATE</div>
+      <div class="metric-old">3 hours</div>
+      <div class="metric-new">44 sec</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">MTTR — RESPOND</div>
+      <div class="metric-old">2 hours</div>
+      <div class="metric-new">minutes</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Rules catch yesterday's attacks. Behavioral ML catches tomorrow's.</div>
+</div>
+
+<script>
+  const MODELS = [
+    { id: 'iso', icon: '🌲', name: 'Isolation Forest', desc: 'Overall anomaly detection' },
+    { id: 'auto', icon: '🔁', name: 'Autoencoder', desc: 'Behavioral deviation' },
+    { id: 'lstm', icon: '📈', name: 'LSTM', desc: 'Time-sequence patterns' },
+    { id: 'gnn', icon: '🕸️', name: 'Graph Neural Net', desc: 'Relationship analysis' },
+    { id: 'dns', icon: '🌐', name: 'DNS Classifier', desc: 'Malicious domain detection' },
+    { id: 'pii', icon: '🔐', name: 'PII Classifier', desc: 'Sensitive data exposure' },
+    { id: 'idn', icon: '👤', name: 'Identity Detector', desc: 'Account behavior anomaly' },
+    { id: 'ens', icon: '⚖️', name: 'Ensemble Scorer', desc: 'Weighted final verdict' },
+  ];
+
+  const SCENARIOS = [
+    {
+      label: 'S3 Data Exfiltration',
+      event: {
+        'accessor_identity': 'svc_backup',
+        'accessor_type': 'service_account',
+        'data_store': 'prod-pci-data',
+        'data_class': 'PCI',
+        'bytes': '524 MB',
+        'time': '03:00 AM',
+        'source_ip': '185.220.101.45 (Tor)',
+      },
+      scores: { iso:0.91, auto:0.88, lstm:0.85, gnn:0.93, dns:0.20, pii:0.95, idn:0.90, ens:0.974 },
+      mitre: 'T1530 — Data from Cloud Storage / TA0010 Exfiltration',
+      action: 'CRITICAL: Disable svc_backup. Restrict bucket. Block Tor IP. Snapshot for forensics. Notify PCI compliance.',
+      dangerKeys: ['source_ip','bytes','time']
+    },
+    {
+      label: 'MFA Fatigue Attack',
+      event: {
+        'accessor_identity': 'john.smith@bank.com',
+        'accessor_type': 'human',
+        'data_store': 'Okta / Entra ID',
+        'data_class': 'INTERNAL',
+        'mfa_denials': '14 in 10 min',
+        'time': '09:00 AM',
+        'source_ip': '185.220.101.45 (Tor)',
+      },
+      scores: { iso:0.72, auto:0.70, lstm:0.88, gnn:0.65, dns:0.20, pii:0.30, idn:0.94, ens:0.88 },
+      mitre: 'T1621 — MFA Request Generation / TA0006 Credential Access',
+      action: 'HIGH: Revoke sessions. Force MFA re-registration. Block source IP. Notify SOC.',
+      dangerKeys: ['source_ip','mfa_denials']
+    },
+    {
+      label: 'Normal Activity',
+      event: {
+        'accessor_identity': 'john.smith',
+        'accessor_type': 'human',
+        'data_store': 'dev-logs',
+        'data_class': 'INTERNAL',
+        'bytes': '1 KB',
+        'time': '02:00 PM',
+        'source_ip': '10.0.0.12 (corp)',
+      },
+      scores: { iso:0.08, auto:0.10, lstm:0.06, gnn:0.05, dns:0.04, pii:0.02, idn:0.09, ens:0.07 },
+      mitre: 'No technique mapped — benign activity',
+      action: 'LOW: Store and log. No alert. SOC sees nothing. Zero noise.',
+      dangerKeys: []
+    },
+  ];
+
+  let activeScenario = 0;
+  let isRunning = false;
+
+  function bandFor(score) {
+    if (score >= 0.80) return { name:'CRITICAL', color:'var(--critical)' };
+    if (score >= 0.60) return { name:'HIGH', color:'var(--high)' };
+    if (score >= 0.30) return { name:'MEDIUM', color:'var(--medium)' };
+    return { name:'LOW', color:'var(--low)' };
+  }
+
+  function renderScenarioBar() {
+    const bar = document.getElementById('scenarioBar');
+    bar.innerHTML = '';
+    SCENARIOS.forEach((s, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'scenario-btn' + (i === activeScenario ? ' active' : '');
+      btn.textContent = s.label;
+      btn.onclick = () => { if (!isRunning) { activeScenario = i; resetView(); } };
+      bar.appendChild(btn);
+    });
+  }
+
+  function renderEvent() {
+    const s = SCENARIOS[activeScenario];
+    const disp = document.getElementById('eventDisplay');
+    disp.innerHTML = '';
+    Object.entries(s.event).forEach(([k,v]) => {
+      const row = document.createElement('div');
+      row.className = 'event-field';
+      const danger = s.dangerKeys.includes(k) ? ' danger' : '';
+      row.innerHTML = `<span class="key">${k}</span><span class="val${danger}">${v}</span>`;
+      disp.appendChild(row);
+    });
+  }
+
+  function renderModels() {
+    const list = document.getElementById('modelList');
+    list.innerHTML = '';
+    MODELS.forEach(m => {
+      const row = document.createElement('div');
+      row.className = 'model-row';
+      row.id = 'row-' + m.id;
+      row.innerHTML = `
+        <div class="model-icon">${m.icon}</div>
+        <div class="model-info">
+          <div class="model-name">${m.name}</div>
+          <div class="model-desc">${m.desc}</div>
+        </div>
+        <div class="model-bar-wrap">
+          <div class="model-bar-track">
+            <div class="model-bar-fill" id="bar-${m.id}"></div>
+          </div>
+        </div>
+        <div class="model-score" id="score-${m.id}">—</div>
+      `;
+      list.appendChild(row);
+    });
+  }
+
+  function resetView() {
+    renderScenarioBar();
+    renderEvent();
+    renderModels();
+    document.getElementById('verdict').classList.remove('show');
+    document.getElementById('runBtn').disabled = false;
+  }
+
+  function colorForScore(score) {
+    const b = bandFor(score);
+    return b.color;
+  }
+
+  async function runScoring() {
+    if (isRunning) return;
+    isRunning = true;
+    document.getElementById('runBtn').disabled = true;
+    document.getElementById('verdict').classList.remove('show');
+
+    const s = SCENARIOS[activeScenario];
+
+    // Score the 7 models first, ensemble last
+    const order = ['iso','auto','lstm','gnn','dns','pii','idn','ens'];
+
+    for (const id of order) {
+      await new Promise(r => setTimeout(r, id === 'ens' ? 600 : 340));
+      const score = s.scores[id];
+      const row = document.getElementById('row-' + id);
+      const bar = document.getElementById('bar-' + id);
+      const scoreEl = document.getElementById('score-' + id);
+      row.classList.add('scored');
+      bar.style.width = (score * 100) + '%';
+      bar.style.background = colorForScore(score);
+      scoreEl.textContent = score.toFixed(2);
+      scoreEl.style.color = colorForScore(score);
+    }
+
+    // Show verdict
+    await new Promise(r => setTimeout(r, 300));
+    const ens = s.scores.ens;
+    const band = bandFor(ens);
+    const v = document.getElementById('verdict');
+    document.getElementById('verdictScore').textContent = ens.toFixed(3);
+    document.getElementById('verdictScore').style.color = band.color;
+    const bandEl = document.getElementById('verdictBand');
+    bandEl.textContent = band.name;
+    bandEl.style.background = band.color;
+    bandEl.style.color = '#0a0e14';
+    document.getElementById('verdictMitre').innerHTML =
+      '<strong>MITRE:</strong> ' + s.mitre;
+    document.getElementById('verdictAction').textContent = s.action;
+    v.classList.add('show');
+
+    isRunning = false;
+    document.getElementById('runBtn').disabled = false;
+  }
+
+  document.getElementById('runBtn').onclick = runScoring;
+  resetView();
+</script>
+</body>
+</html>
