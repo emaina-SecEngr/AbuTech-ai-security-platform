@@ -1,6 +1,6 @@
 [
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.779082Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.481375Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -10,12 +10,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.779138Z"
+      "timestamp": "2026-06-03T16:43:10.481469Z"
     },
-    "timestamp": "2026-05-28T01:24:16.782543Z"
+    "timestamp": "2026-06-03T16:43:10.484538Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.817167Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.528713Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -25,12 +25,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.817213Z"
+      "timestamp": "2026-06-03T16:43:10.528793Z"
     },
-    "timestamp": "2026-05-28T01:24:16.821094Z"
+    "timestamp": "2026-06-03T16:43:10.536326Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.857117Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.584038Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -40,12 +40,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.857180Z"
+      "timestamp": "2026-06-03T16:43:10.584096Z"
     },
-    "timestamp": "2026-05-28T01:24:16.861969Z"
+    "timestamp": "2026-06-03T16:43:10.590830Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.894474Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.649190Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -55,12 +55,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.894516Z"
+      "timestamp": "2026-06-03T16:43:10.649270Z"
     },
-    "timestamp": "2026-05-28T01:24:16.898722Z"
+    "timestamp": "2026-06-03T16:43:10.657597Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.931119Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.711924Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -70,12 +70,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.931173Z"
+      "timestamp": "2026-06-03T16:43:10.711966Z"
     },
-    "timestamp": "2026-05-28T01:24:16.935674Z"
+    "timestamp": "2026-06-03T16:43:10.718195Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:16.975830Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.762689Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE High risk malware techniques T1566.001 T1059.001 threat actor TA542 malware Emotet",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -85,12 +85,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:16.975885Z"
+      "timestamp": "2026-06-03T16:43:10.762779Z"
     },
-    "timestamp": "2026-05-28T01:24:16.981288Z"
+    "timestamp": "2026-06-03T16:43:10.770990Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:17.047052Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.847203Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in progress.  Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. techniques T1059 Command and Scripting T1566.001 Spearphishing Attachment T1566.001 T1059.001 T1127 T1568.002 T1071.001 threat actor TA542",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -100,12 +100,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:17.047097Z"
+      "timestamp": "2026-06-03T16:43:10.847245Z"
     },
-    "timestamp": "2026-05-28T01:24:17.053568Z"
+    "timestamp": "2026-06-03T16:43:10.853325Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:17.143470Z",
+    "id": "inv_test-001_2026-06-03T16:43:10.937780Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in progress.  Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. techniques T1059 Command and Scripting T1566.001 Spearphishing Attachment T1566.001 T1059.001 T1127 T1568.002 T1071.001 threat actor TA542",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -115,12 +115,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:17.143529Z"
+      "timestamp": "2026-06-03T16:43:10.937844Z"
     },
-    "timestamp": "2026-05-28T01:24:17.148455Z"
+    "timestamp": "2026-06-03T16:43:10.942868Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:17.220499Z",
+    "id": "inv_test-001_2026-06-03T16:43:11.034512Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in progress.  Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. techniques T1059 Command and Scripting T1566.001 Spearphishing Attachment T1566.001 T1059.001 T1127 T1568.002 T1071.001 threat actor TA542",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -130,12 +130,12 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:17.220550Z"
+      "timestamp": "2026-06-03T16:43:11.034569Z"
     },
-    "timestamp": "2026-05-28T01:24:17.226440Z"
+    "timestamp": "2026-06-03T16:43:11.039600Z"
   },
   {
-    "id": "inv_test-001_2026-05-28T01:24:17.295167Z",
+    "id": "inv_test-001_2026-06-03T16:43:11.115217Z",
     "document": "host WKSTN-JSMITH-01 user CORP\\jsmith verdict MALWARE Alert on WKSTN-JSMITH-01 scored 0.97 overall. ML verdict: MALWARE. Malware score: 0.97. DGA score: 0.90. Graph shows 11 connected entities. Decision: INVESTIGATE (CRITICAL). Threat intelligence for WKSTN-JSMITH-01: Activity attributed to Mummy Spider (Emotet) (TA542). Financially motivated group operating Emotet botnet. C2 communication confirmed \u2014 active compromise in progress.  Investigation of WKSTN-JSMITH-01 (CORP\\jsmith): ACTIVE COMPROMISE CONFIRMED. Initial access: Spearphishing attachment \u2014 malicious Office document. Attack timeline: 4 stages. Blast radius: 5 entities. techniques T1059 Command and Scripting T1566.001 Spearphishing Attachment T1566.001 T1059.001 T1127 T1568.002 T1071.001 threat actor TA542",
     "metadata": {
       "event_host": "WKSTN-JSMITH-01",
@@ -145,8 +145,8 @@
       "triage_verdict": "INVESTIGATE",
       "risk_score": 0.97,
       "compromise_confirmed": true,
-      "timestamp": "2026-05-28T01:24:17.295210Z"
+      "timestamp": "2026-06-03T16:43:11.115270Z"
     },
-    "timestamp": "2026-05-28T01:24:17.299950Z"
+    "timestamp": "2026-06-03T16:43:11.123679Z"
   }
 ]
