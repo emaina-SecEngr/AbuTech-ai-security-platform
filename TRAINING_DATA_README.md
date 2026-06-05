@@ -38,6 +38,9 @@ Detects unusual access patterns that deviate from normal behavior.
 No labeled attack data needed — learns what normal looks like
 then flags everything that does not fit.
 
+1. Anomaly & Intrusion Detection
+This is the most common use case. By using unsupervised learning algorithms like Isolation Forests or One-Class SVM, you can train a model on "normal" network traffic. When the model sees a spike in data transfer or an unusual connection pattern, it flags it as a potential intrusion
+
 **ALGORITHM:** Isolation Forest (scikit-learn)
 **DEPLOYMENT:** Real-time. Scores every event in under 10ms.
 
