@@ -55,7 +55,7 @@ KNOWN_SOURCES = {
     "email_gateway", "email",
     "cspm", "iac", "gcp",
     "crowdstrike", "kubernetes",
-    "cwpp", "defender_cloud", "purview_dlp",
+    "cwpp", "defender_cloud", "purview_dlp", "guardduty",
 }
 
 
@@ -136,6 +136,18 @@ class SourceDetector:
         # --- Microsoft Defender for Cloud ---
         # Distinctive: AlertDisplayName / alertType
         # under properties or flat
+        # --- AWS GuardDuty ---
+        # Distinctive: type like "X:Y/Z" + severity
+        # + service.action structure
+        ftype = e.get("type", e.get("Type", ""))
+        if (
+            isinstance(ftype, str)
+            and ":" in ftype
+            and "/" in ftype
+            and ("service" in e or "Service" in e
+                 or "resource" in e or "Resource" in e)
+        ):
+            return "guardduty"
         props = e.get("properties", e)
         if isinstance(props, dict):
             if any(k in props for k in [

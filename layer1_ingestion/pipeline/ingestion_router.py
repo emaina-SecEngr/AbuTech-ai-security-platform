@@ -46,6 +46,8 @@ from layer1_ingestion.normalizers.purview_dlp_normalizer\
     import PurviewDLPNormalizer
 from layer1_ingestion.normalizers.cspm_normalizer\
     import CSPMNormalizer
+from layer1_ingestion.normalizers.guardduty_normalizer\
+    import GuardDutyNormalizer
 
 logger = logging.getLogger(__name__)
 
@@ -109,8 +111,12 @@ class IngestionRouter:
             "cspm": lambda e: self._get(
                 "cspm", CSPMNormalizer
             ).normalize(e),
-        }
 
+            "guardduty": lambda e: self._get(
+                "guardduty", GuardDutyNormalizer
+            ).normalize(e),
+        }
+        
     def _get(self, key: str, cls):
         """Lazily instantiate and cache a normalizer"""
         if key not in self._cache:

@@ -107,6 +107,20 @@ def cwpp_prisma_event():
         "containerName": "payment-api"
     }
 
+@pytest.fixture
+def guardduty_event():
+    return {
+        "type": "CryptoCurrency:EC2/BitcoinTool.B!DNS",
+        "severity": 8.0,
+        "title": "Crypto mining detected",
+        "resource": {
+            "resourceType": "Instance",
+            "instanceDetails": {"instanceId": "i-0abc"}
+        },
+        "service": {"count": 1}
+    }
+
+
 
 @pytest.fixture
 def cwpp_aqua_event():
@@ -357,6 +371,16 @@ class TestIngestionPipeline:
             "kubernetes"
         )
 
+    def test_ingest_guardduty_inferred(
+        self, pipeline, guardduty_event
+    ):
+        result = pipeline.ingest(guardduty_event)
+        assert result is not None
+        assert result["ingestion_source"] == (
+            "guardduty"
+        )
+        assert result["mitre_technique"] == "T1496"
+        
     def test_ingest_invalid_returns_none(
         self, pipeline
     ):
