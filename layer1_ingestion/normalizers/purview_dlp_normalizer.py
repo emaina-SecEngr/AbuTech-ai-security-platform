@@ -354,7 +354,8 @@ class PurviewDLPNormalizer:
             if "@" in r_lower:
                 domain = r_lower.split("@")[-1]
                 if not any(
-                    d in domain
+                    domain == d
+                    or domain.endswith("." + d)
                     for d in internal_domains
                 ):
                     return True
