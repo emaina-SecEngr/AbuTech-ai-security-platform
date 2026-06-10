@@ -32,6 +32,9 @@ USAGE:
 
 import logging
 
+from layer1_ingestion.normalizers.security_hub_normalizer\
+    import SecurityHubNormalizer
+
 from layer1_ingestion.normalizers.s3_normalizer\
     import S3Normalizer
 from layer1_ingestion.normalizers.rds_normalizer\
@@ -115,8 +118,12 @@ class IngestionRouter:
             "guardduty": lambda e: self._get(
                 "guardduty", GuardDutyNormalizer
             ).normalize(e),
+
+            "security_hub": lambda e: self._get(
+                "security_hub", SecurityHubNormalizer
+            ).normalize(e),
         }
-        
+                
     def _get(self, key: str, cls):
         """Lazily instantiate and cache a normalizer"""
         if key not in self._cache:

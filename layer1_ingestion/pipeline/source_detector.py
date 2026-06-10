@@ -55,7 +55,7 @@ KNOWN_SOURCES = {
     "email_gateway", "email",
     "cspm", "iac", "gcp",
     "crowdstrike", "kubernetes",
-    "cwpp", "defender_cloud", "purview_dlp", "guardduty",
+    "cwpp", "defender_cloud", "purview_dlp", "guardduty","security_hub",
 }
 
 
@@ -139,6 +139,16 @@ class SourceDetector:
         # --- AWS GuardDuty ---
         # Distinctive: type like "X:Y/Z" + severity
         # + service.action structure
+    # --- AWS Security Hub (ASFF) ---
+        # Distinctive: ProductArn, or a Findings list
+        if "ProductArn" in e or "productArn" in e:
+            return "security_hub"
+        if "Findings" in e and isinstance(
+            e.get("Findings"), list
+        ):
+            return "security_hub"
+
+
         ftype = e.get("type", e.get("Type", ""))
         if (
             isinstance(ftype, str)
