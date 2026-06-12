@@ -21,7 +21,7 @@ anthropic==0.52.0
 langchain==0.3.25
 langchain-community==0.3.25
 langchain-anthropic==0.3.11
-langgraph==0.4.5
+langgraph==1.0.10rc1
 # Knowledge Graph
 networkx==3.6.1
 # Data and Requests
