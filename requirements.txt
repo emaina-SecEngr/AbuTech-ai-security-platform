@@ -15,7 +15,7 @@ xgboost==2.1.2
 fastapi==0.136.1
 uvicorn==0.46.0
 httpx==0.28.1
-python-multipart==0.0.20
+python-multipart==0.0.27
 # LLM and Agents
 anthropic==0.52.0
 langchain==0.3.25
