@@ -120,6 +120,19 @@ def guardduty_event():
         "service": {"count": 1}
     }
 
+    
+@pytest.fixture
+def security_hub_event():
+    return {
+        "ProductArn": "arn:aws:securityhub:us-east-1::product/aws/macie",
+        "Title": "Sensitive data discovered: credit card numbers",
+        "Severity": {"Label": "HIGH"},
+        "Resources": [
+            {"Id": "arn:aws:s3:::prod-pci-bucket"}
+        ],
+        "Types": ["Sensitive Data Identifications/PII"]
+    }
+
 
 
 @pytest.fixture
@@ -380,7 +393,19 @@ class TestIngestionPipeline:
             "guardduty"
         )
         assert result["mitre_technique"] == "T1496"
-        
+
+    def test_ingest_security_hub_inferred(
+        self, pipeline, security_hub_event
+    ):
+        result = pipeline.ingest(security_hub_event)
+        assert result is not None
+        assert result["ingestion_source"] == (
+            "security_hub"
+        )
+        assert result["securityhub_product"] == (
+            "macie"
+        )
+                
     def test_ingest_invalid_returns_none(
         self, pipeline
     ):
