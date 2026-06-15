@@ -5624,5 +5624,199 @@
     },
     "tags": {},
     "ended_at": "2026-06-14T03:44:06.488367Z"
+  },
+  {
+    "run_name": "test-run",
+    "started_at": "2026-06-14T22:23:06.712587Z",
+    "params": {},
+    "metrics": {},
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.719768Z"
+  },
+  {
+    "run_name": "ctx-run",
+    "started_at": "2026-06-14T22:23:06.738265Z",
+    "params": {},
+    "metrics": {
+      "test": 0.5
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.743241Z"
+  },
+  {
+    "run_name": "my-run",
+    "started_at": "2026-06-14T22:23:06.770631Z",
+    "params": {},
+    "metrics": {},
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.775520Z"
+  },
+  {
+    "run_name": "run-1",
+    "started_at": "2026-06-14T22:23:06.792961Z",
+    "params": {},
+    "metrics": {
+      "m1": 0.8
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.799471Z"
+  },
+  {
+    "run_name": "run-2",
+    "started_at": "2026-06-14T22:23:06.818103Z",
+    "params": {},
+    "metrics": {
+      "m2": 0.9
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.823116Z"
+  },
+  {
+    "run_name": "params-test",
+    "started_at": "2026-06-14T22:23:06.841642Z",
+    "params": {
+      "n_estimators": 100,
+      "contamination": 0.1
+    },
+    "metrics": {},
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.848271Z"
+  },
+  {
+    "run_name": "metrics-test",
+    "started_at": "2026-06-14T22:23:06.867739Z",
+    "params": {},
+    "metrics": {
+      "auc": 0.91,
+      "precision": 0.88
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.873312Z"
+  },
+  {
+    "run_name": "single-metric",
+    "started_at": "2026-06-14T22:23:06.893179Z",
+    "params": {},
+    "metrics": {
+      "recall": 0.85
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.900355Z"
+  },
+  {
+    "run_name": "validation-pass",
+    "started_at": "2026-06-14T22:23:06.922064Z",
+    "params": {},
+    "metrics": {
+      "isolation_forest_passed": 1,
+      "isolation_forest_detection_rate": 0.91,
+      "isolation_forest_threshold": 0.75,
+      "isolation_forest_margin": 0.16000000000000003
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.928150Z"
+  },
+  {
+    "run_name": "validation-fail",
+    "started_at": "2026-06-14T22:23:06.947484Z",
+    "params": {},
+    "metrics": {
+      "lstm_detector_passed": 0,
+      "lstm_detector_detection_rate": 0.65,
+      "lstm_detector_threshold": 0.7,
+      "lstm_detector_margin": -0.04999999999999993
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.953868Z"
+  },
+  {
+    "run_name": "drift-test",
+    "started_at": "2026-06-14T22:23:06.972754Z",
+    "params": {},
+    "metrics": {
+      "drift_timestamp_norm_ks": 0.05,
+      "drift_timestamp_norm_pvalue": 0.82,
+      "drift_timestamp_norm_psi": 0.03,
+      "drift_timestamp_norm_critical": 0
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:06.980042Z"
+  },
+  {
+    "run_name": "drift-critical",
+    "started_at": "2026-06-14T22:23:06.999382Z",
+    "params": {},
+    "metrics": {
+      "drift_volume_norm_ks": 0.45,
+      "drift_volume_norm_pvalue": 0.01,
+      "drift_volume_norm_psi": 0.35,
+      "drift_volume_norm_critical": 1
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:07.005899Z"
+  },
+  {
+    "run_name": "ensemble-test",
+    "started_at": "2026-06-14T22:23:07.023134Z",
+    "params": {
+      "ensemble_verdict": "DATA_EXFILTRATION",
+      "ensemble_pii_sensitivity": "PCI"
+    },
+    "metrics": {
+      "ensemble_final_score": 0.95,
+      "ensemble_pii_elevated": 1,
+      "ensemble_isolation_forest_score": 0.9,
+      "ensemble_pii_classifier_score": 0.95
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:07.031247Z"
+  },
+  {
+    "run_name": "inv-test",
+    "started_at": "2026-06-14T22:23:07.050932Z",
+    "params": {
+      "event_id": "evt-001",
+      "severity": "CRITICAL"
+    },
+    "metrics": {
+      "investigation_duration": 44.1,
+      "investigation_agents": 4,
+      "investigation_hitl": 1
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:07.056524Z"
+  },
+  {
+    "run_name": "summary-test",
+    "started_at": "2026-06-14T22:23:07.084346Z",
+    "params": {},
+    "metrics": {
+      "test": 0.5
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:07.086595Z"
+  },
+  {
+    "run_name": "isolation_forest_20260614_222307",
+    "started_at": "2026-06-14T22:23:07.118945Z",
+    "params": {
+      "n_estimators": 100
+    },
+    "metrics": {
+      "auc": 0.91,
+      "precision": 0.88
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:11.368806Z"
+  },
+  {
+    "run_name": "pii_classifier_20260614_222311",
+    "started_at": "2026-06-14T22:23:11.507796Z",
+    "params": {},
+    "metrics": {
+      "precision": 0.95
+    },
+    "tags": {},
+    "ended_at": "2026-06-14T22:23:11.729634Z"
   }
 ]
