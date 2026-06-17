@@ -20,7 +20,7 @@ python-multipart==0.0.20
 anthropic==0.52.0
 langchain==0.3.25
 langchain-community==0.3.25
-langchain-anthropic==0.3.11
+langchain-anthropic==1.4.6
 langgraph==0.4.5
 # Knowledge Graph
 networkx==3.6.1
