@@ -25,7 +25,7 @@ langgraph==0.4.5
 # Knowledge Graph
 networkx==3.6.1
 # Data and Requests
-requests==2.32.3
+requests==2.33.0
 python-dateutil==2.9.0
 # ML Tracking
 mlflow==3.11.1
